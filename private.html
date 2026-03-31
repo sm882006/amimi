@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Happy Birthday 🎀</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <canvas id="confetti-canvas"></canvas>
+    <div class="hearts-bg" id="hearts-bg"></div>
+
+    <!-- ===================== PAGE 1 ===================== -->
+    <section class="page active" id="page1">
+        <div class="photo-side">
+            <div class="badge badge-1">🎉 Special Day!</div>
+            <div class="badge badge-2">💖 Princess</div>
+            <div class="badge badge-3">✨ Queen</div>
+            <div class="photo-frame">
+                <div class="placeholder-img">
+                    <img src="assets/photos/image-1.jpeg" alt="">
+                    <!-- <span>📸</span>
+                    <strong>Your Friend's<br />Photo Here</strong>
+                    <small>Replace in code</small> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="text-side">
+            <div class="birthday-label">✨ Wishing You ✨</div>
+            <div class="birthday-title">Happy Birthday</div>
+            <div class="birthday-name">Amisha 🌸</div>
+            <p class="birthday-sub">
+                Today is all about you — the most beautiful,<br />
+                amazing, and wonderful girl in the world! 🌟
+            </p>
+            <div class="emoji-row">🎂 🎀 💐 🎁 🍰</div>
+            <button class="btn-main" onclick="openLetter()">
+                🎁 Get Ready for Surprise
+            </button>
+        </div>
+    </section>
+
+    <!-- ===================== LETTER OVERLAY ===================== -->
+    <div id="letter-overlay">
+        <div class="envelope-wrap">
+            <div class="letter-card" id="letter-card">
+                <div class="letter-decoration">🌸 💖 🌸</div>
+                <h3>My Dearest Friend,</h3>
+                <p>
+                    On this magical day, I want you to know just how incredibly special
+                    you are to us. 🌷<br /><br />
+                    You light up every room you walk into, and your smile is the most
+                    beautiful thing in the world. 💫<br /><br />
+                    It's your special day and you absolutely deserve all the cake, all
+                    the love, and all the good times! 🎂🥳 Happy Birthday to one of the 
+                    coolest people I know!
+                    🎀<br /><br />
+                    May all your dreams come true, may every day bring you joy, and may
+                    you always know how loved you are. 🌟
+                </p>
+                <div class="letter-decoration" style="margin-top: 12px">💐 🎂 💐</div>
+                <div class="sign">With all my love 💖</div>
+            </div>
+
+            <div class="envelope" id="envelope" onclick="openEnvelope()">
+                <div class="env-body">
+                    <div class="env-flap" id="env-flap"></div>
+                    <div class="env-heart" id="env-heart">💌</div>
+                </div>
+            </div>
+
+            <button class="btn-next-overlay" id="btn-next-overlay" onclick="goToPage2()">
+                💐 Ready for Next One →
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================== PAGE 2 ===================== -->
+    <section class="page" id="page2">
+        <div class="p2-top">
+            <!-- Bouquet left -->
+            <div class="bouquet-side">💐</div>
+
+            <!-- Photo + Wishes right -->
+            <div class="wish-side">
+                <div class="photo-frame-2">
+
+                    <div class="placeholder-img">
+                        <img src="assets/photos/image-2.jpeg" alt="">
+                    </div>
+                </div>
+
+                <div class="wishes-box">
+                    <h2>Birthday Wishes 🌸</h2>
+                    <div class="wish-item">
+                        <span class="wish-icon">🌟</span>
+                        <span>May your day be as bright and beautiful as your smile!</span>
+                    </div>
+                    <div class="wish-item">
+                        <span class="wish-icon">💖</span>
+                        <span>Wishing you endless joy, laughter, and love today and
+                            always.</span>
+                    </div>
+                    <div class="wish-item">
+                        <span class="wish-icon">🎂</span>
+                        <span>May every candle on your cake be a wish that comes true!</span>
+                    </div>
+                    <div class="wish-item">
+                        <span class="wish-icon">🌸</span>
+                        <span>You deserve all the flowers, all the cake, and all the
+                            love.</span>
+                    </div>
+                    <div class="wish-item">
+                        <span class="wish-icon">✨</span>
+                        <span>Here's to you — the most wonderful person I know! 🥂</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-last" onclick="goToPage3()">🎬 Last One 🎬</button>
+    </section>
+
+    <!-- ===================== PAGE 3 ===================== -->
+    <section class="page" id="page3">
+        <div class="video-title">A Special Message For You 🎥</div>
+        <div class="video-sub">🌸 Just for you, Amisha  🌸</div>
+
+        <div class="video-container">
+            
+            <div class="video-placeholder">
+                <video src="assets/video/video-1.mp4"></video>
+            </div>
+        </div>
+
+        <div class="video-end-msg">Happy Birthday, Amimimi! 🎀</div>
+        <div class="stars-row">⭐ 💖 ⭐ 💖 ⭐</div>
+    </section>
+
+    <script>
+        /* ===== CONFETTI ===== */
+        const canvas = document.getElementById("confetti-canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const colors = [
+            "#ff6b9d",
+            "#ff4d7e",
+            "#c975d4",
+            "#f7c948",
+            "#ffb3cc",
+            "#e8c6f0",
+            "#ff9ec4",
+        ];
+        const pieces = Array.from({ length: 80 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            r: Math.random() * 6 + 3,
+            d: Math.random() * 3 + 1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            tilt: Math.random() * 10 - 10,
+            shape: Math.random() > 0.5 ? "circle" : "rect",
+        }));
+
+        let confettiActive = true;
+        function drawConfetti() {
+            if (!confettiActive) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            pieces.forEach((p) => {
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                if (p.shape === "circle") {
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                } else {
+                    ctx.rect(p.x, p.y, p.r * 2, p.r);
+                }
+                ctx.fill();
+                p.y += p.d;
+                p.tilt += 0.07;
+                p.x += Math.sin(p.tilt) * 1.5;
+                if (p.y > canvas.height) {
+                    p.y = -10;
+                    p.x = Math.random() * canvas.width;
+                }
+            });
+            requestAnimationFrame(drawConfetti);
+        }
+        drawConfetti();
+
+        /* ===== FLOATING HEARTS ===== */
+        const heartsContainer = document.getElementById("hearts-bg");
+        const heartEmojis = ["💖", "💕", "💗", "🌸", "✨", "💝", "🌷"];
+        for (let i = 0; i < 18; i++) {
+            const h = document.createElement("div");
+            h.className = "heart-particle";
+            h.textContent = heartEmojis[i % heartEmojis.length];
+            h.style.left = Math.random() * 100 + "%";
+            h.style.animationDuration = Math.random() * 8 + 6 + "s";
+            h.style.animationDelay = Math.random() * 6 + "s";
+            h.style.fontSize = Math.random() * 1 + 0.8 + "rem";
+            heartsContainer.appendChild(h);
+        }
+
+        /* ===== LETTER OPEN ===== */
+        function openLetter() {
+            document.getElementById("letter-overlay").classList.add("show");
+            setTimeout(() => launchConfetti(), 300);
+        }
+
+        function launchConfetti() {
+            confettiActive = true;
+            pieces.forEach((p) => {
+                p.y = -20;
+            });
+        }
+
+        let envelopeOpened = false;
+        function openEnvelope() {
+            if (envelopeOpened) return;
+            envelopeOpened = true;
+            document.getElementById("env-flap").classList.add("open");
+            document.getElementById("env-heart").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("letter-card").classList.add("revealed");
+                setTimeout(() => {
+                    document.getElementById("btn-next-overlay").classList.add("show");
+                }, 700);
+            }, 500);
+        }
+
+        /* ===== PAGE TRANSITIONS ===== */
+        function goToPage2() {
+            document.getElementById("letter-overlay").classList.remove("show");
+            document.getElementById("page1").classList.remove("active");
+            const p2 = document.getElementById("page2");
+            p2.classList.add("active");
+            window.scrollTo(0, 0);
+        }
+
+        function goToPage3() {
+            document.getElementById("page2").classList.remove("active");
+            const p3 = document.getElementById("page3");
+            p3.classList.add("active");
+            window.scrollTo(0, 0);
+            // Auto-play video if present
+            const vid = p3.querySelector("video");
+            if (vid) setTimeout(() => vid.play().catch(() => { }), 500);
+        }
+    </script>
+</body>
+
+</html>
